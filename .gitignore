@@ -1,0 +1,9 @@
+venv/
+node_modules/
+uploads/
+data/
+certs/
+public/icons/
+.DS_Store
+*.log
+node_modules/

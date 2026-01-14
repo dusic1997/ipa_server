@@ -1,0 +1,23 @@
+{
+  "name": "ipa-server",
+  "version": "1.0.0",
+  "description": "Local network IPA installation server for iOS devices",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "generate-cert": "bash scripts/generate-cert.sh"
+  },
+  "dependencies": {
+    "bplist-parser": "^0.3.2",
+    "express": "^4.18.2",
+    "jszip": "^3.10.1",
+    "multer": "^1.4.5-lts.1",
+    "plist": "^3.1.0",
+    "qrcode": "^1.5.3",
+    "uuid": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
