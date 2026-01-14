@@ -9,11 +9,16 @@ const emptyState = document.getElementById('emptyState');
 const installModal = document.getElementById('installModal');
 const modalBackdrop = document.getElementById('modalBackdrop');
 const modalClose = document.getElementById('modalClose');
+const confirmModal = document.getElementById('confirmModal');
+const confirmBackdrop = document.getElementById('confirmBackdrop');
+const confirmCancel = document.getElementById('confirmCancel');
+const confirmOk = document.getElementById('confirmOk');
 const noticeClose = document.getElementById('noticeClose');
 const certNotice = document.getElementById('certNotice');
 
 // State
 let apps = [];
+let appToDelete = null;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -43,6 +48,11 @@ function setupEventListeners() {
     modalBackdrop.addEventListener('click', closeModal);
     modalClose.addEventListener('click', closeModal);
 
+    // Confirm Modal
+    confirmBackdrop.addEventListener('click', closeConfirmModal);
+    confirmCancel.addEventListener('click', closeConfirmModal);
+    confirmOk.addEventListener('click', executeDelete);
+
     // Certificate notice
     noticeClose.addEventListener('click', () => {
         certNotice.classList.add('hidden');
@@ -51,7 +61,10 @@ function setupEventListeners() {
 
     // Keyboard
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
+        if (e.key === 'Escape') {
+            closeModal();
+            closeConfirmModal();
+        }
     });
 }
 
@@ -283,8 +296,23 @@ function closeModal() {
 }
 
 // Delete App
-async function deleteApp(appId) {
-    if (!confirm('确定要删除这个应用吗？')) return;
+function deleteApp(appId) {
+    appToDelete = appId;
+    confirmModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeConfirmModal() {
+    confirmModal.classList.remove('active');
+    document.body.style.overflow = '';
+    appToDelete = null;
+}
+
+async function executeDelete() {
+    if (!appToDelete) return;
+
+    const appId = appToDelete;
+    closeConfirmModal();
 
     try {
         const response = await fetch(`/api/apps/${appId}`, {

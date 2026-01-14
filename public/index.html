@@ -1,129 +1,157 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IPA Server - iOS 应用安装</title>
-  <meta name="description" content="局域网 iOS 应用安装服务器">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPA Server - iOS 应用安装</title>
+    <meta name="description" content="局域网 iOS 应用安装服务器">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <div class="container">
-    <!-- Header -->
-    <header class="header">
-      <div class="logo">
-        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-          <path d="M2 17l10 5 10-5"/>
-          <path d="M2 12l10 5 10-5"/>
-        </svg>
-        <h1>IPA Server</h1>
-      </div>
-      <p class="subtitle">局域网 iOS 应用安装服务器</p>
-    </header>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                </svg>
+                <h1>IPA Server</h1>
+            </div>
+            <p class="subtitle">局域网 iOS 应用安装服务器</p>
+        </header>
 
-    <!-- Upload Section -->
-    <section class="upload-section">
-      <div class="upload-area" id="uploadArea">
-        <div class="upload-content">
-          <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="17 8 12 3 7 8"/>
-            <line x1="12" y1="3" x2="12" y2="15"/>
-          </svg>
-          <h3>拖放 IPA 文件到这里</h3>
-          <p>或者点击选择文件</p>
-          <input type="file" id="fileInput" accept=".ipa" hidden>
-        </div>
-        <div class="upload-progress" id="uploadProgress">
-          <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-          </div>
-          <p class="progress-text" id="progressText">上传中...</p>
-        </div>
-      </div>
-    </section>
+        <!-- Upload Section -->
+        <section class="upload-section">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-content">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="17 8 12 3 7 8" />
+                        <line x1="12" y1="3" x2="12" y2="15" />
+                    </svg>
+                    <h3>拖放 IPA 文件到这里</h3>
+                    <p>或者点击选择文件</p>
+                    <input type="file" id="fileInput" accept=".ipa" hidden>
+                </div>
+                <div class="upload-progress" id="uploadProgress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p class="progress-text" id="progressText">上传中...</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Apps List -->
-    <section class="apps-section">
-      <h2 class="section-title">已上传的应用</h2>
-      <div class="apps-list" id="appsList">
-        <div class="loading" id="loadingApps">
-          <div class="spinner"></div>
-          <p>加载中...</p>
-        </div>
-        <div class="empty-state" id="emptyState" style="display: none;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-            <line x1="9" y1="9" x2="15" y2="15"/>
-            <line x1="15" y1="9" x2="9" y2="15"/>
-          </svg>
-          <p>暂无应用</p>
-          <span>上传一个 IPA 文件开始使用</span>
-        </div>
-      </div>
-    </section>
+        <!-- Apps List -->
+        <section class="apps-section">
+            <h2 class="section-title">已上传的应用</h2>
+            <div class="apps-list" id="appsList">
+                <div class="loading" id="loadingApps">
+                    <div class="spinner"></div>
+                    <p>加载中...</p>
+                </div>
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                        <line x1="9" y1="9" x2="15" y2="15" />
+                        <line x1="15" y1="9" x2="9" y2="15" />
+                    </svg>
+                    <p>暂无应用</p>
+                    <span>上传一个 IPA 文件开始使用</span>
+                </div>
+            </div>
+        </section>
 
-    <!-- Install Modal -->
-    <div class="modal" id="installModal">
-      <div class="modal-backdrop" id="modalBackdrop"></div>
-      <div class="modal-content">
-        <button class="modal-close" id="modalClose">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
-        </button>
-        <div class="modal-header">
-          <img class="modal-icon" id="modalIcon" src="" alt="">
-          <div class="modal-info">
-            <h3 id="modalAppName">应用名称</h3>
-            <p id="modalAppVersion">版本 1.0</p>
-          </div>
+        <!-- Install Modal -->
+        <div class="modal" id="installModal">
+            <div class="modal-backdrop" id="modalBackdrop"></div>
+            <div class="modal-content">
+                <button class="modal-close" id="modalClose">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+                <div class="modal-header">
+                    <img class="modal-icon" id="modalIcon" src="" alt="">
+                    <div class="modal-info">
+                        <h3 id="modalAppName">应用名称</h3>
+                        <p id="modalAppVersion">版本 1.0</p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="qr-container">
+                        <img id="qrCode" src="" alt="安装二维码">
+                        <p>使用 iOS 设备扫描二维码安装</p>
+                    </div>
+                    <div class="divider"><span>或</span></div>
+                    <a class="install-button" id="installButton" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        点击安装
+                    </a>
+                    <p class="install-note">* 需要在 iOS Safari 浏览器中打开</p>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <div class="qr-container">
-            <img id="qrCode" src="" alt="安装二维码">
-            <p>使用 iOS 设备扫描二维码安装</p>
-          </div>
-          <div class="divider"><span>或</span></div>
-          <a class="install-button" id="installButton" href="#">
+
+        <!-- Confirm Modal -->
+        <div class="modal" id="confirmModal">
+            <div class="modal-backdrop" id="confirmBackdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-icon warning">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                            <line x1="12" y1="9" x2="12" y2="13" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg>
+                    </div>
+                    <div class="modal-info">
+                        <h3>确认删除</h3>
+                        <p id="confirmMessage">确定要删除这个应用吗？此操作无法撤销。</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="confirmCancel">取消</button>
+                    <button class="btn btn-danger" id="confirmOk">删除</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificate Notice -->
+        <div class="notice" id="certNotice">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
             </svg>
-            点击安装
-          </a>
-          <p class="install-note">* 需要在 iOS Safari 浏览器中打开</p>
+            <div class="notice-content">
+                <strong>首次使用？</strong>
+                <p>iOS 设备需要先安装 SSL 证书才能下载应用。</p>
+                <a href="/certs/ca.crt" class="notice-link">下载证书</a>
+            </div>
+            <button class="notice-close" id="noticeClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
         </div>
-      </div>
     </div>
 
-    <!-- Certificate Notice -->
-    <div class="notice" id="certNotice">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="10"/>
-        <line x1="12" y1="8" x2="12" y2="12"/>
-        <line x1="12" y1="16" x2="12.01" y2="16"/>
-      </svg>
-      <div class="notice-content">
-        <strong>首次使用？</strong>
-        <p>iOS 设备需要先安装 SSL 证书才能下载应用。</p>
-        <a href="/certs/ca.crt" class="notice-link">下载证书</a>
-      </div>
-      <button class="notice-close" id="noticeClose">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"/>
-          <line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <script src="/js/app.js"></script>
+    <script src="/js/app.js"></script>
 </body>
+
 </html>
